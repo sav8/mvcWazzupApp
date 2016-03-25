@@ -15,12 +15,6 @@ namespace WhatsUp.Models
             return contacts;
         }
 
-        public IEnumerable<Contact> GetAllContacts()
-        {
-            IEnumerable<Contact> allContacts = ctx.Contacts;
-            return allContacts;
-        }
-
         public Contact GetContact(int id)
         {
             return ctx.Contacts.SingleOrDefault(c => c.Id == id);

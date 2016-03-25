@@ -190,12 +190,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountGroup.cs" />
     <Compile Include="Models\AccountMessage.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupMessage.cs" />
+    <Compile Include="Models\GroupMessageModel.cs" />
     <Compile Include="Models\LastAccountMessage.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Repositories\DbAccountRepository.cs" />
     <Compile Include="Models\Repositories\DbChatRepository.cs" />
     <Compile Include="Models\Repositories\DbContactRepository.cs" />
+    <Compile Include="Models\Repositories\DbGroupRepository.cs" />
     <Compile Include="Models\Repositories\IContactRepository.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Repositories\InMemoryContactRepository.cs" />
@@ -263,6 +268,9 @@
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\Groups\ViewChat.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

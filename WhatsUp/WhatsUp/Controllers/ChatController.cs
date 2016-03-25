@@ -44,13 +44,9 @@ namespace WhatsUp.Controllers
         [HttpPost]
         public ActionResult Send(string message, int otherAccountId)
         {
-            if (ModelState.IsValid)
-            {
-                Account account = (Account)Session["loggedin_account"];
-                repository.SendMessage(message, otherAccountId, account.Id);
-                return RedirectToAction("ViewChat", "Chat", new { otherAccountId = otherAccountId });
-            }
-            return View();
+            Account account = (Account)Session["loggedin_account"];
+            repository.SendMessage(message, otherAccountId, account.Id);
+            return RedirectToAction("ViewChat", "Chat", new { otherAccountId = otherAccountId });
         }
 
     }

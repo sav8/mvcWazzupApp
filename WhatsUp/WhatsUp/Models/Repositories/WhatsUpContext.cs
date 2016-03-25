@@ -20,5 +20,11 @@ namespace WhatsUp.Models
 
         public DbSet<Message> Messages { get; set; }
 
+        public DbSet<Group> Groups { get; set; }
+
+        public DbSet<AccountGroup> AccountGroup { get; set; }
+
+        public DbSet<GroupMessage> GroupMessages { get; set; }
+
     }
 }
