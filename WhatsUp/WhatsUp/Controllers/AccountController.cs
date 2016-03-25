@@ -10,7 +10,7 @@ namespace WhatsUp.Controllers
 {
     public class AccountController : Controller
     {
-        //
+        ///
         // GET: /Account/
         private DbAccountRepository repository = new DbAccountRepository();
 
