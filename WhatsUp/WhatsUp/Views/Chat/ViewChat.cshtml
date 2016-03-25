@@ -1,0 +1,27 @@
+﻿@using WhatsUp.Models
+@model IEnumerable<WhatsUp.Models.AccountMessage>
+@{
+    ViewBag.Title = "Chats";
+}
+<h2>Chats</h2>
+<h3 style="text-align:center">@Model.First().OtherAccount.Name</h3>
+@foreach (AccountMessage accountMessage in Model)
+{
+    if (accountMessage.SenderAccount == ViewBag.loggedin)
+    {
+        <p style="float:left">@accountMessage.Message (@accountMessage.AddedAt)</p> 
+        <br /><br />
+    }
+    else
+    {
+        <p style="float:right">@accountMessage.Message (@accountMessage.AddedAt)</p> 
+        <br /><br />
+    }  
+}
+<form action="Send" method="post">
+    <input type="text" name="message" />
+    <input type="number" name="otherAccountId" value="@Model.First().OtherAccount.Id"/> 
+    <input type="submit" name="submit"/>
+</form>
+
+

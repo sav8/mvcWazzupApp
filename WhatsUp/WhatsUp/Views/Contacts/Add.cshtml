@@ -1,0 +1,18 @@
+﻿@model WhatsUp.Models.Contact
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add new contact</h2>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Name)
+    <br /><br />
+    @Html.LabelFor(m => m.phoneNumber)
+    @Html.TextBoxFor(m => m.phoneNumber)
+    @Html.ValidationMessageFor(m => m.phoneNumber)
+    <br /><br />
+    <input type="submit" value="Create Contact" />
+}

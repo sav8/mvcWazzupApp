@@ -1,0 +1,15 @@
+﻿@using WhatsUp.Models
+@model IEnumerable<WhatsUp.Models.AccountMessage>
+@{
+    ViewBag.Title = "Chats";
+}
+<h2>Chats</h2>
+@foreach (AccountMessage accountMessage in Model)
+{
+    <section class="contact">
+        <header>
+            <h3>@Html.ActionLink(@accountMessage.OtherAccount.Name, "ViewChat", "Chat", new { otherAccountId = accountMessage.OtherAccount.Id }, null)</h3>
+            <p>@accountMessage.Message (@accountMessage.AddedAt)</p>
+        </header>
+    </section>
+}
