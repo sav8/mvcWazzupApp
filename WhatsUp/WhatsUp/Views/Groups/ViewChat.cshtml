@@ -1,0 +1,36 @@
+﻿@using WhatsUp.Models
+@model IEnumerable<GroupMessageModel>
+@{
+    ViewBag.Title = "ViewChat";
+}
+
+<h2>Group chats</h2>
+<h3 style="text-align:center">Chat met: 
+    @foreach (Account a in ViewBag.Participants)
+    {
+        <text>@a.Name</text>
+    }                                     
+</h3>
+@foreach (GroupMessageModel g in Model)
+{
+    if (g.Participant.Id == ViewBag.accountid)
+    {
+        <p class="links">@g.Message.Message<br /> By: @g.Participant.Name (@g.DateTime) </p>
+        <br />
+        <br />
+        <div style="clear: both;"></div>
+    }
+    else
+    {
+        <p class="rechts">@g.Message.Message<br /> By: @g.Participant.Name (@g.DateTime) </p>
+        <br />
+        <br />
+        <div style="clear: both;"></div>
+    }
+}
+<form action="Send" method="post">
+    <input type="text" name="message" />
+    <input type="hidden" name="groupid" value="@ViewBag.groupid" />
+    <input type="submit" name="submit" />
+</form>
+

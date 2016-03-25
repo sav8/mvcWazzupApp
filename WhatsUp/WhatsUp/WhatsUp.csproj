@@ -270,7 +270,7 @@
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Groups\ViewChat.cshtml" />
     <Content Include="Views\Groups\Create.cshtml" />
-    <Content Include="Views\Groups\Update.cshtml" />
+    <Content Include="Views\Groups\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

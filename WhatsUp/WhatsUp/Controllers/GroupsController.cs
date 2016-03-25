@@ -54,10 +54,7 @@ namespace WhatsUp.Controllers
         }
         public ActionResult Create()
         {
-            Account account = (Account)Session["loggedin_account"];
-            IEnumerable<Contact> contacts = repository.GetContacts(account.Id);
-
-            return View(contacts);
+            return View();
         }
         [HttpPost]
         public ActionResult Create(string name)
@@ -65,6 +62,19 @@ namespace WhatsUp.Controllers
             Account account = (Account)Session["loggedin_account"];
             repository.CreateGroup(name, account.Id);
             return RedirectToAction("index", "Contacts");
+        }
+        public ActionResult Add(int groupId)
+        {
+            ViewBag.groupId = groupId;
+            Account account = (Account)Session["loggedin_account"];
+            IEnumerable<Contact> contacts = repository.GetContacts(account.Id);
+            return View(contacts);
+        }
+        [HttpPost]
+        public ActionResult Add(int accountId, int groupId)
+        {
+            repository.AddAccountToGroup(accountId, groupId);
+            return RedirectToAction("index", "Groups");
         }
     }
 }

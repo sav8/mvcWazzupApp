@@ -1,0 +1,12 @@
+﻿@using WhatsUp.Models;
+@model IEnumerable<Contact>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form action="Create" method="post">
+    Name of the group: <input type="text" name="Name" />
+    <input type="submit" name="submit" />
+</form>

@@ -1,0 +1,14 @@
+﻿@using WhatsUp.Models;
+@model IEnumerable<Contact>
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+@foreach (Contact c in Model)
+{
+    <ul>
+        <li>@Html.ActionLink(c.Name, "Add", "Groups", new { accountId = c.whatsupAccountId, groupId = ViewBag.groupId }, null)</li>
+    </ul>
+    
+}
