@@ -64,14 +64,13 @@ namespace WhatsUp.Models
 
             return (IEnumerable<AccountMessage>)accountMessages.OrderBy(m => m.AddedAt);
         }
-
+        public string GetContactName(int ownerAccountId, int whatsupAccountId)
+        {
+            return ctx.Contacts.SingleOrDefault(c => c.ownerAccountId == ownerAccountId && c.whatsupAccountId == whatsupAccountId).Name;
+        }
         public void SendMessage(string message, int otherAccountId, int accountId)
         {
-            Message chatMessage = new Message();
-            chatMessage.ChatMessage = message;
-            chatMessage.DateTime = DateTime.Now;
-            chatMessage.ReceiverId = otherAccountId;
-            chatMessage.SenderId = accountId;
+            Message chatMessage = new Message(message, DateTime.Now, otherAccountId, accountId);
 
             ctx.Messages.Add(chatMessage);
             ctx.SaveChanges();

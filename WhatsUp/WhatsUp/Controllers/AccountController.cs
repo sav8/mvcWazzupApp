@@ -33,8 +33,9 @@ namespace WhatsUp.Controllers
                     ModelState.AddModelError("register-error", "The emailaddress or phonenumber already exists.");
                     return View();
                 }
+                return RedirectToAction("Login", "Account");
             }
-            return RedirectToAction("Login", "Account");
+            return View(model);
         }
         public ActionResult Login()
         {
@@ -55,10 +56,11 @@ namespace WhatsUp.Controllers
 
                     return RedirectToAction("Index", "Contacts");
                 }
-            }
-            else
-            {
-                ModelState.AddModelError("login-error", "The user name or password provided is incorrect");
+
+                else
+                {
+                    ModelState.AddModelError("login-error", "The user name or password provided is incorrect");
+                }
             }
             return View(model);
         }

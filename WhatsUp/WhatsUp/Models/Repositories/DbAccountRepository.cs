@@ -14,14 +14,16 @@ namespace WhatsUp.Models
             if (ctx.Accounts.SingleOrDefault(a => a.Emailaddress == model.EmailAddress) == null &&
                 ctx.Accounts.SingleOrDefault(a => a.PhoneNumber == model.MobileNumber) == null)
             {
-                Account account = new Account();
-                account.Name = model.Name;
-                account.Emailaddress = model.EmailAddress;
-                account.Password = model.Password;
-                account.PhoneNumber = model.MobileNumber;
+                Account account = new Account(model.Name, model.EmailAddress, model.Password, model.MobileNumber);
                 
                 ctx.Accounts.Add(account);
                 ctx.SaveChanges();
+                Contact contact = ctx.Contacts.SingleOrDefault(c => c.phoneNumber == model.MobileNumber);
+                if (contact != null)
+                {
+                    contact.whatsupAccountId = account.Id;
+                    ctx.SaveChanges();
+                }
                 return true;
             }
             return false;
@@ -29,7 +31,8 @@ namespace WhatsUp.Models
 
         public Account GetAccount(string emailaddress, string password)
         {
-            return ctx.Accounts.Single(c => (c.Emailaddress == emailaddress) && (c.Password == password));
+            Account account = ctx.Accounts.SingleOrDefault(c => (c.Emailaddress == emailaddress) && (c.Password == password));
+            return account;
         }
     }
 }

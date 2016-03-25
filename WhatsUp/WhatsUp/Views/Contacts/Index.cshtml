@@ -1,7 +1,7 @@
 ﻿@using WhatsUp.Models;
 @model IEnumerable<Contact>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My contacts";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -10,10 +10,17 @@
 </p>
 
 <ul>
-    Lijst met contacten
     @foreach (Contact contact in Model)
     {
         <li>@contact.Name</li> 
+        if (contact.whatsupAccountId.HasValue)
+        {
+            @Html.ActionLink("Chatten!", "ViewChat", "Chat", new { otherAccountId = contact.whatsupAccountId }, null )
+        }
+        else if (!contact.whatsupAccountId.HasValue)
+        {
+            <text>User heeft geen WhatsUp account.</text>
+        }
         @Html.ActionLink("Update", "Update", new { id = contact.Id }, null)
         @Html.ActionLink("Delete", "Delete", new { id = contact.Id }, null)
     }

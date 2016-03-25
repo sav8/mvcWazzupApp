@@ -24,5 +24,12 @@ namespace WhatsUp.Models
         {
             
         }
+        public Message(string message, DateTime dateTime, int receiverId, int senderId)
+        {
+            this.ChatMessage = message;
+            this.DateTime = dateTime;
+            this.ReceiverId = receiverId;
+            this.SenderId = senderId;
+        }
     }
 }

@@ -15,9 +15,14 @@ namespace WhatsUp.Controllers
         // GET: /Contacts/
         public ActionResult Index()
         {
+
             Account account = (Account)Session["loggedin_account"];
-            IEnumerable<Contact> allContacts = contactRepository.GetContactsForUser(account.Id);
-            return View(allContacts);
+            if (account != null)
+            {
+                IEnumerable<Contact> allContacts = contactRepository.GetContactsForUser(account.Id);
+                return View(allContacts);
+            }
+            return RedirectToAction("LogOut", "Account");
         }
         public ActionResult Update(int id)
         {
@@ -27,8 +32,12 @@ namespace WhatsUp.Controllers
         [HttpPost]
         public ActionResult Update(Contact contact)
         {
-            contactRepository.UpdateContact(contact);
-            return RedirectToAction("index");
+            if (ModelState.IsValid)
+            {
+                contactRepository.UpdateContact(contact);
+                return RedirectToAction("index");
+            }
+            return View(contact);
         }
         public ActionResult Add()
         {

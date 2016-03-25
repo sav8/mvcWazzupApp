@@ -17,25 +17,30 @@ namespace WhatsUp.Models
 
         [Required(ErrorMessage = "Phone number of contact is required")]
         [Display(Name = "Phone Number")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Email address of contact is required")]
         [Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress)]
         public string Emailaddress { get; set; }
 
+        [Required]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        public Account(int id, string name, string phonenumber, string emailaddress, string password)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.PhoneNumber = phonenumber;
-            this.Emailaddress = emailaddress;
-            this.Password = password;
-        }
+    
         public Account()
         {
 
         }
+        public Account(string name, string emailaddress, string password, string phonenumber)
+        {
+            this.Name = name;
+            this.Emailaddress = emailaddress;
+            this.Password = password;
+            this.PhoneNumber = phonenumber;
+        }
+       
     }
 }

@@ -7,7 +7,9 @@
 <h2>Update</h2>
 @using (Html.BeginForm())
 {
-   <p>@Html.DisplayFor(m => m.Name)</p>
-    @Html.TextBoxFor(m => m.Name)
+    <p>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </p>
     <input type="submit" value="Update Contact" />
 }

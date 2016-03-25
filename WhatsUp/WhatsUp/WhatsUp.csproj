@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,15 +193,15 @@
     <Compile Include="Models\AccountMessage.cs" />
     <Compile Include="Models\LastAccountMessage.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\DbAccountRepository.cs" />
-    <Compile Include="Models\DbChatRepository.cs" />
-    <Compile Include="Models\DbContactRepository.cs" />
-    <Compile Include="Models\IContactRepository.cs" />
+    <Compile Include="Models\Repositories\DbAccountRepository.cs" />
+    <Compile Include="Models\Repositories\DbChatRepository.cs" />
+    <Compile Include="Models\Repositories\DbContactRepository.cs" />
+    <Compile Include="Models\Repositories\IContactRepository.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\InMemoryContactRepository.cs" />
+    <Compile Include="Models\Repositories\InMemoryContactRepository.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\WhatsUpContext.cs" />
+    <Compile Include="Models\Repositories\WhatsUpContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +262,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
+    <Content Include="Views\Groups\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

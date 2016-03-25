@@ -16,24 +16,41 @@ namespace WhatsUp.Controllers
         public ActionResult Index()
         {
             Account account = (Account)Session["loggedin_account"];
-
-            IEnumerable<AccountMessage> messages = repository.GetLastMessages(account.Id);
-            return View(messages);
+            if (account != null)
+            {
+                IEnumerable<AccountMessage> messages = repository.GetLastMessages(account.Id);
+                return View(messages);
+            }
+            return RedirectToAction("LogOut", "Account");
         }
         public ActionResult ViewChat(int otherAccountId)
         {
             Account account = (Account)Session["loggedin_account"];
-            ViewBag.loggedin = account.Id;
-            IEnumerable<AccountMessage> messages = repository.GetAccountMessages(otherAccountId, account.Id);
-            return View(messages);
+            if (account != null)
+            {
+                ViewBag.loggedin = account.Id;
+                ViewBag.contactname = repository.GetContactName(account.Id, otherAccountId);
+                IEnumerable<AccountMessage> messages = repository.GetAccountMessages(otherAccountId, account.Id);
+                if (messages.Count() == 0)
+                {
+                    repository.SendMessage("Welkom, er zijn nog geen chatberichten.", otherAccountId, account.Id);
+                    return RedirectToAction("ViewChat", "Chat", new { otherAccountId = otherAccountId });
+                }
+                return View(messages);
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
         public ActionResult Send(string message, int otherAccountId)
         {
-            Account account = (Account)Session["loggedin_account"];
-            repository.SendMessage(message, otherAccountId, account.Id);
-            return RedirectToAction("ViewChat");
+            if (ModelState.IsValid)
+            {
+                Account account = (Account)Session["loggedin_account"];
+                repository.SendMessage(message, otherAccountId, account.Id);
+                return RedirectToAction("ViewChat", "Chat", new { otherAccountId = otherAccountId });
+            }
+            return View();
         }
 
     }
