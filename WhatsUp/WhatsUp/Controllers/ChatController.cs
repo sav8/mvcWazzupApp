@@ -33,7 +33,7 @@ namespace WhatsUp.Controllers
         {
             Account account = (Account)Session["loggedin_account"];
             repository.SendMessage(message, otherAccountId, account.Id);
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewChat");
         }
 
     }
