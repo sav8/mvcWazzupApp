@@ -5,7 +5,6 @@
 }
 
 <h2>Groups</h2>
-@Html.ActionLink("Create a group", "Create", "Groups")
 @foreach (Group group in Model)
 {
     <p>@Html.ActionLink(group.Name, "ViewChat", "Groups", new { groupid = group.Id }, null) @Html.ActionLink("Add people", "Add", "Groups", new { groupid = group.Id }, null)</p>
